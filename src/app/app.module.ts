@@ -9,9 +9,10 @@ import { InventoryModule } from './inventory/inventory.module';
 import { PosModule } from './pos/pos.module';
 import { UserModule } from './user/user.module';
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
