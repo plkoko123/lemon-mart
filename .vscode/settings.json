@@ -22,10 +22,8 @@
     "prettier.printWidth": 90, //Following setting requires Prettier Extension,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "es5",
-    "typescriptHero.imports.insertSemicolons": false, // Following setting requires TypeScriptHero Extension
+    "typescriptHero.imports.insertSemicolons": true, // Following setting requires TypeScriptHero Extension
     "typescriptHero.imports.multiLineWrapThreshold": 90,
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    },
+    "typescriptHero.imports.organizeOnSave": true,
     "npm.enableScriptExplorer": true
 }
