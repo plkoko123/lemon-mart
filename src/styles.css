@@ -1,14 +1,1 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-  margin: 0;
-}
-.margin-top {
-  margin-top: 16px;
-}
-.horizontal-padding {
-  margin-left: 16px;
-  margin-right: 16px;
-}
-.flex-space {
-  flex: 1 1 auto;
-}
