@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/localcast-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
