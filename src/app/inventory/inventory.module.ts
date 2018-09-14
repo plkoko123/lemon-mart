@@ -11,6 +11,12 @@ import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   imports: [CommonModule, InventoryRoutingModule, MaterialModule],
-  declarations: [InventoryComponent, InventoryDashboardComponent, StockEntryComponent, ProductsComponent, CategoriesComponent],
+  declarations: [
+    InventoryComponent,
+    InventoryDashboardComponent,
+    StockEntryComponent,
+    ProductsComponent,
+    CategoriesComponent,
+  ],
 })
 export class InventoryModule {}

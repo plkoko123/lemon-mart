@@ -7,13 +7,10 @@ import { Component, OnInit } from '@angular/core';
       pos works!
     </p>
   `,
-  styles: []
+  styles: [],
 })
 export class PosComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
