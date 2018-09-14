@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { InventoryModule } from './inventory/inventory.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PosModule } from './pos/pos.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, PageNotFoundComponent],
@@ -19,7 +18,6 @@ import { PosModule } from './pos/pos.module';
     AppRoutingModule,
     MaterialModule,
     InventoryModule,
-    PosModule,
     HttpClientModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
