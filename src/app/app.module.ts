@@ -8,7 +8,6 @@ import { MaterialModule } from './/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { InventoryModule } from './inventory/inventory.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    InventoryModule,
     HttpClientModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
