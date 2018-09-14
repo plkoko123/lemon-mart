@@ -5,9 +5,10 @@ import { MaterialModule } from '../material.module';
 import { InventoryRoutingModule } from './inventory-routing.module';
 import { InventoryComponent } from './inventory.component';
 import { InventoryDashboardComponent } from './inventory-dashboard/inventory-dashboard.component';
+import { StockEntryComponent } from './stock-entry/stock-entry.component';
 
 @NgModule({
   imports: [CommonModule, InventoryRoutingModule, MaterialModule],
-  declarations: [InventoryComponent, InventoryDashboardComponent],
+  declarations: [InventoryComponent, InventoryDashboardComponent, StockEntryComponent],
 })
 export class InventoryModule {}
