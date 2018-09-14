@@ -14,6 +14,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
+  { path: 'manager', loadChildren: './manager/manager.module#ManagerModule' },
   {
     path: '**',
     component: PageNotFoundComponent,

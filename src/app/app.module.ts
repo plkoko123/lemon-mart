@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { InventoryModule } from './inventory/inventory.module';
-import { ManagerModule } from './manager/manager.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PosModule } from './pos/pos.module';
 import { UserModule } from './user/user.module';
@@ -19,7 +18,6 @@ import { UserModule } from './user/user.module';
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    ManagerModule,
     InventoryModule,
     PosModule,
     UserModule,

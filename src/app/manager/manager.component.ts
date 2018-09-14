@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <p>
       manager works!
     </p>
+    <router-outlet></router-outlet>
   `,
   styles: [],
 })

@@ -7,13 +7,10 @@ import { Component, OnInit } from '@angular/core';
       manager-home works!
     </p>
   `,
-  styles: []
+  styles: [],
 })
 export class ManagerHomeComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
