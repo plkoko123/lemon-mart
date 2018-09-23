@@ -32,11 +32,14 @@ export class ObservableMediaFake {
 export class MatIconRegistryFake {
   _document = document;
   addSvgIcon(iconName: string, url: SafeResourceUrl): this {
+    // this.addSvgIcon('lemon', 'lemon.svg')
     return this;
   }
+
   getNamedSvgIcon(name: string, namespace: string = ''): Observable<SVGElement> {
     return of(this._svgElementFromString(FAKE_SVGS.lemon));
   }
+
   private _svgElementFromString(str: string): SVGElement {
     if (this._document || typeof document !== 'undefined') {
       const div = (this._document || document).createElement('DIV');
