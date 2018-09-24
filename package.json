@@ -6,6 +6,7 @@
     "standardize": "prettier **/*.ts --write",
     "start": "npm run standardize && ng serve --port 5000",
     "build": "npm run standardize && ng build",
+    "build:ci": "docker build -f Dockerfile.integration . -t $npm_package_config_imageRepo:latest",
     "build:prod": "ng build --prod",
     "test": "ng test",
     "test:prod": "npm test -- --watch=false",
@@ -77,5 +78,13 @@
     "singleQuote": true,
     "trailingComma": "es5",
     "parser": "typescript"
+  },
+  "config": {
+    "imageRepo": "jinlin9192/lemon-mart",
+    "imageName": "lemon-mart",
+    "imagePort": "8080",
+    "awsRegion": "us-east-1",
+    "awsEcsCluster": "fargate-custer",
+    "awsService": "lemon-mart-service"
   }
 }
