@@ -6,12 +6,13 @@ jobs:
     working_directory: /usr/src
     steps:
       - checkout
-      - setup_remote_docker:
-        docker_layer_caching: false
+      - setup_remote_docker
       - run:
-        name: Build Docker Image
-        command: |
-          npm run build:ci
+          name: Build Docker Image
+          # code is checked out in the pipeline, consider copying from CI to Pipeline
+          # consider caching node_modules or switching to npm ci option when it becomes stable
+          command: |
+            npm run build:ci
 
 workflows:
   version: 2
@@ -24,3 +25,11 @@ workflows:
           filters:
             branches:
               only: sequential-branch-filter
+
+# *restore_repo
+# Consider tagging images with $CIRCLE_BRANCH
+# Deployment Integrations https://circleci.com/docs/2.0/deployment-integrations
+# For Docker Hub deploy see https://circleci.com/docs/2.0/building-docker-images/
+# For AWS ECS deploy see https://circleci.com/blog/how-to-build-a-docker-image-on-circleci-2-0/
+# For Heroku see https://devcenter.heroku.com/articles/container-registry-and-runtime#pushing-an-image-s
+# For cache optimization read https://medium.com/@gajus/making-docker-in-docker-builds-x2-faster-using-docker-cache-from-option-c01febd8ef84
