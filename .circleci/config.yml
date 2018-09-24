@@ -25,25 +25,7 @@ jobs:
       - store_test_results:
           path: tests/units.html
 
-  publish:
-    docker:
-      - image: docker:17.12.0-ce-git
-    working_directory: /usr/src
-    steps:
-      - restore_cache:
-        keys:
-          - built-image-{{ .BuildNum }}
-          - built-image
-      - setup_remote_docker
-      - run:
-          name: Sign into AWS ecr
-          command: $(aws ecr get-login --no-include-email --region us-east-1)
-      - run:
-          name: Push it to ECR
-          command: |
-            docker load < docker-cache/built-image.tar
-            docker tag my_app:$CIRCLE_BRANCH $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/lemon-mart:$CIRCLE_BRANCH
-            docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/lemon-mart:$CIRCLE_BRANCH
+
 
 workflows:
   version: 2
