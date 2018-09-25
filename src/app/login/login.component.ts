@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthService } from '../auth/auth.service';
+import { UiService } from '../common/ui.service';
 import { EmailValidation, PasswordValidation } from '../common/validation';
 
 @Component({
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private uiService: UiService
   ) {
     route.paramMap.subscribe(param => (this.redirectUrl = param.get('redirectUrl')));
   }
@@ -49,6 +51,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         authStatus => {
           if (authStatus.isAuthenticated) {
+            this.uiService.showToast(`Welcome! Role: ${authStatus.userRole}`);
             this.router.navigate([this.redirectUrl || '/manager']);
           }
         },
