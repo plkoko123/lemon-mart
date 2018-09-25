@@ -1,14 +1,29 @@
 import { Injectable } from '@angular/core';
 import { sign } from 'fake-jwt-sign';
+import * as decode from 'jwt-decode';
 import {
   BehaviorSubject,
   Observable,
   of,
   throwError as observableThrowError,
 } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { HttpClient } from 'selenium-webdriver/http';
 
+import { transformError } from '../common/common';
 import { Role } from './role.enum';
+
+export interface IAuthStatus {
+  isAuthenticated: boolean;
+  userRole: Role;
+  userId: string;
+}
+
+interface IServerAuthResponse {
+  accessToken: string;
+}
+
+const defaultAuthStatus = { isAuthenticated: false, userRole: Role.None, userId: null };
 
 @Injectable({
   providedIn: 'root',
@@ -20,11 +35,6 @@ export class AuthService {
   ) => Observable<IServerAuthResponse>;
 
   authStatus = new BehaviorSubject<IAuthStatus>(defaultAuthStatus);
-
-  constructor(private httpClient: HttpClient) {
-    // Fake login function to simulate roles
-    this.authProvider = this.fakeAuthProvider;
-  }
 
   private fakeAuthProvider(
     email: string,
@@ -54,16 +64,35 @@ export class AuthService {
 
     return of(authResponse);
   }
-}
 
-export interface IAuthStatus {
-  isAuthenticated: boolean;
-  userRole: Role;
-  userId: string;
-}
+  constructor(private httpClient: HttpClient) {
+    // Fake login function to simulate roles
+    this.authProvider = this.fakeAuthProvider;
+  }
 
-interface IServerAuthResponse {
-  accessToken: string;
-}
+  login(email: string, password: string): Observable<IAuthStatus> {
+    this.logout();
 
-const defaultAuthStatus = { isAuthenticated: false, userRole: Role.None, userId: null };
+    const loginResponse = this.authProvider(email, password).pipe(
+      map(value => {
+        return decode(value.accessToken) as IAuthStatus;
+      }),
+      catchError(transformError)
+    );
+
+    loginResponse.subscribe(
+      res => {
+        this.authStatus.next(res);
+      },
+      err => {
+        this.logout();
+        return observableThrowError(err);
+      }
+    );
+    return loginResponse;
+  }
+
+  logout() {
+    this.authStatus.next(defaultAuthStatus);
+  }
+}
