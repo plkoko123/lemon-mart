@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -14,6 +15,8 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
+  { path: 'login', component: LoginComponent },
+  { path: 'login/:redirectUrl', component: LoginComponent },
   { path: 'manager', loadChildren: './manager/manager.module#ManagerModule' },
   { path: 'user', loadChildren: './user/user.module#UserModule' },
   { path: 'pos', loadChildren: './pos/pos.module#PosModule' },

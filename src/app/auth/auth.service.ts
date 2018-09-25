@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { sign } from 'fake-jwt-sign';
 import * as decode from 'jwt-decode';
@@ -8,8 +9,8 @@ import {
   throwError as observableThrowError,
 } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { HttpClient } from 'selenium-webdriver/http';
 
+import { environment } from '../../environments/environment';
 import { transformError } from '../common/common';
 import { Role } from './role.enum';
 
@@ -35,6 +36,16 @@ export class AuthService {
   ) => Observable<IServerAuthResponse>;
 
   authStatus = new BehaviorSubject<IAuthStatus>(defaultAuthStatus);
+
+  private exampleAuthProvider(
+    email: string,
+    password: string
+  ): Observable<IServerAuthResponse> {
+    return this.httpClient.post<IServerAuthResponse>(`${environment.baseUrl}/v1/login`, {
+      email: email,
+      password: password,
+    });
+  }
 
   private fakeAuthProvider(
     email: string,
