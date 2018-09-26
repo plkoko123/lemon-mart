@@ -12,6 +12,7 @@ import { catchError, map } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { transformError } from '../common/common';
+import { CacheService } from './cache.service';
 import { Role } from './role.enum';
 
 export interface IAuthStatus {
@@ -29,13 +30,38 @@ const defaultAuthStatus = { isAuthenticated: false, userRole: Role.None, userId:
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService extends CacheService {
+  authStatus = new BehaviorSubject<IAuthStatus>(
+    this.getItem('authStatus') || defaultAuthStatus
+  );
+
   private readonly authProvider: (
     email: string,
     password: string
   ) => Observable<IServerAuthResponse>;
 
-  authStatus = new BehaviorSubject<IAuthStatus>(defaultAuthStatus);
+  constructor(private httpClient: HttpClient) {
+    super();
+    this.authStatus.subscribe(authStatus => this.setItem('authStatus', authStatus));
+    // Fake login function to simulate roles
+    this.authProvider = this.fakeAuthProvider;
+  }
+
+  private setToken(jwt: string) {
+    this.setItem('jwt', jwt);
+  }
+
+  private getDecodedToken(): IAuthStatus {
+    return decode(this.getItem('jwt'));
+  }
+
+  getToken(): string {
+    return this.getItem('jwt') || '';
+  }
+
+  private clearToken() {
+    this.removeItem('jwt');
+  }
 
   private exampleAuthProvider(
     email: string,
@@ -76,16 +102,12 @@ export class AuthService {
     return of(authResponse);
   }
 
-  constructor(private httpClient: HttpClient) {
-    // Fake login function to simulate roles
-    this.authProvider = this.fakeAuthProvider;
-  }
-
   login(email: string, password: string): Observable<IAuthStatus> {
     this.logout();
 
     const loginResponse = this.authProvider(email, password).pipe(
       map(value => {
+        this.setToken(value.accessToken);
         return decode(value.accessToken) as IAuthStatus;
       }),
       catchError(transformError)
@@ -104,6 +126,7 @@ export class AuthService {
   }
 
   logout() {
+    this.clearToken();
     this.authStatus.next(defaultAuthStatus);
   }
 }
