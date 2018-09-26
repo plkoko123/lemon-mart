@@ -14,8 +14,7 @@ import { EmailValidation, PasswordValidation } from '../common/validation';
       .error {
         color: red;
       }
-    `,
-    `
+
       div[fxLayout] {
         margin-top: 32px;
       }

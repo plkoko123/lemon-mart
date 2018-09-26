@@ -22,8 +22,7 @@ import { Component, OnInit } from '@angular/core';
       div[fxLayout] {
         margin-top: 32px;
       }
-    `,
-    `
+
       .active-link {
         font-weight: bold;
         border-bottom: 2px solid #005005;
