@@ -24,9 +24,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HomeComponent,
     PageNotFoundComponent,
     LoginComponent,
-    SimpleDialogComponent,
     NavigationMenuComponent,
+    SimpleDialogComponent,
   ],
+  entryComponents: [SimpleDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

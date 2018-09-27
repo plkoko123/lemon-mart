@@ -34,7 +34,12 @@ export class UiService {
       SimpleDialogComponent,
       customConfig || {
         width: '300px',
-        data: { title: title, content: content, okText: okText, cancelText: cancelText },
+        data: {
+          title: title,
+          content: content,
+          okText: okText,
+          cancelText: cancelText,
+        },
       }
     );
     return dialogRef.afterClosed();

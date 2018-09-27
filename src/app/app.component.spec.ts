@@ -9,9 +9,7 @@ import {
   DomSanitizerFake,
   ObservableMediaFake,
 } from './common/common.testing';
-import {
-  NavigationMenuComponent,
-} from './user/navigation-menu/navigation-menu.component';
+import { NavigationMenuComponent } from './user/navigation-menu/navigation-menu.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
