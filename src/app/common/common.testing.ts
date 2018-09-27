@@ -7,9 +7,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of, Subscription } from 'rxjs';
 
+import { MaterialModule } from '../app-material.module';
 import { AuthService } from '../auth/auth.service';
 import { AuthServiceFake } from '../auth/auth.service.fake';
-import { MaterialModule } from '../material.module';
 import { UiService } from './ui.service';
 
 const FAKE_SVGS = {
