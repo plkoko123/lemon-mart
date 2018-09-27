@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { $enum } from 'ts-enum-util';
 
 import { AuthService } from '../../auth/auth.service';
@@ -12,11 +13,12 @@ import {
   OneCharValidation,
   OptionalTextValidation,
   RequiredTextValidation,
+  USAPhoneNumberValidation,
   USAZipCodeValidation,
 } from '../../common/validation';
-import { IUser } from '../user/user';
+import { IPhone, IUser } from '../user/user';
 import { UserService } from '../user/user.service';
-import { IUSState, PhoneType } from './data';
+import { IUSState, PhoneType, USStateFilter } from './data';
 
 @Component({
   selector: 'app-profile',
@@ -84,6 +86,50 @@ export class ProfileComponent implements OnInit {
         ],
         zip: [(user && user.address && user.address.zip) || '', USAZipCodeValidation],
       }),
+      phones: this.formBuilder.array(this.buildPhoneArray(user ? user.phones : [])),
+    });
+    this.states = this.userForm
+      .get('address')
+      .get('state')
+      .valueChanges.pipe(
+        startWith(''),
+        map(value => USStateFilter(value))
+      );
+  }
+
+  get phonesArray(): FormArray {
+    return <FormArray>this.userForm.get('phones');
+  }
+  get dateOfBirth() {
+    return this.userForm.get('dateOfBirth').value || new Date();
+  }
+  get age() {
+    return new Date().getFullYear() - this.dateOfBirth.getFullYear();
+  }
+  addPhone() {
+    this.phonesArray.push(this.buildPhoneFormControl(this.phonesArray.value.length + 1));
+  }
+  async save(form: FormGroup) {
+    this.userService
+      .updateUser(form.value)
+      .subscribe(res => this.buildUserForm(res), err => (this.userError = err));
+  }
+  private buildPhoneArray(phones: IPhone[]) {
+    const groups = [];
+    if (!phones || (phones && phones.length === 0)) {
+      groups.push(this.buildPhoneFormControl(1));
+    } else {
+      phones.forEach(p =>
+        groups.push(this.buildPhoneFormControl(p.id, p.type, p.number))
+      );
+    }
+    return groups;
+  }
+  private buildPhoneFormControl(id, type?: string, number?: string) {
+    return this.formBuilder.group({
+      id: [id],
+      type: [type || '', Validators.required],
+      number: [number || '', USAPhoneNumberValidation],
     });
   }
 }

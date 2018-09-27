@@ -3,9 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { MaterialModule } from '../app-material.module';
 import { CategoriesComponent } from './categories/categories.component';
-import {
-  InventoryDashboardComponent,
-} from './inventory-dashboard/inventory-dashboard.component';
+import { InventoryDashboardComponent } from './inventory-dashboard/inventory-dashboard.component';
 import { InventoryRoutingModule } from './inventory-routing.module';
 import { InventoryComponent } from './inventory.component';
 import { ProductsComponent } from './products/products.component';
