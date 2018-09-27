@@ -7,6 +7,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Observable, of, Subscription } from 'rxjs';
 
+import { AuthService } from '../auth/auth.service';
+import { AuthServiceFake } from '../auth/auth.service.fake';
 import { MaterialModule } from '../material.module';
 
 const FAKE_SVGS = {
@@ -62,7 +64,9 @@ export class DomSanitizerFake {
   }
 }
 
-export const commonTestingProviders: any[] = [];
+export const commonTestingProviders: any[] = [
+  { provide: AuthService, useClass: AuthServiceFake },
+];
 
 export const commonTestingModules: any[] = [
   FormsModule,

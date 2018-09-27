@@ -9,6 +9,9 @@ import {
   DomSanitizerFake,
   ObservableMediaFake,
 } from './common/common.testing';
+import {
+  NavigationMenuComponent,
+} from './user/navigation-menu/navigation-menu.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -19,7 +22,7 @@ describe('AppComponent', () => {
         // { provide: MatIconRegistry, useClass: MatIconRegistryFake },
         { provide: DomSanitizer, useClass: DomSanitizerFake },
       ]),
-      declarations: [AppComponent],
+      declarations: [AppComponent, NavigationMenuComponent],
     }).compileComponents();
   }));
   it('should create the app', async(() => {
