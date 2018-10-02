@@ -21,8 +21,8 @@ import { AuthService } from './auth/auth.service';
       <button *ngIf="_displayAccountIcons" mat-mini-fab routerLink="/user/profile"
         matTooltip="Profile" aria-label="User Profile"><mat-icon>account_circle</mat-icon>
       </button>
-      <button *ngIf="_displayAccountIcons" mat-mini-fab routerLink="user/logout"
-        matToolTip="Logout" aria-label="Logout"><mat-icon>lock_open</mat-icon>
+      <button *ngIf="_displayAccountIcons" mat-mini-fab routerLink="/user/logout"
+        matTooltip="Logout" aria-label="Logout"><mat-icon>lock_open</mat-icon>
       </button>
     </mat-toolbar>
     <mat-sidenav-container class="app-sidenav-container"
