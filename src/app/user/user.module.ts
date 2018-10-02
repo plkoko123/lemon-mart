@@ -6,13 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../app-material.module';
 import { AuthGuard } from '../auth/auth-guard.service';
+import { ShareComponentsModule } from '../shared-components.module';
 import { LogoutComponent } from './logout/logout.component';
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserMaterialModule } from './user-material.module';
 import { UserRoutingModule } from './user-routing.module';
 import { UserService } from './user/user.service';
-import { ViewUserComponent } from './view-user/view-user.component';
 
 @NgModule({
   imports: [
@@ -24,13 +24,9 @@ import { ViewUserComponent } from './view-user/view-user.component';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    ShareComponentsModule,
   ],
-  declarations: [
-    ProfileComponent,
-    LogoutComponent,
-    NavigationMenuComponent,
-    ViewUserComponent,
-  ],
+  declarations: [ProfileComponent, LogoutComponent, NavigationMenuComponent],
   providers: [UserService, AuthGuard],
 })
 export class UserModule {}
