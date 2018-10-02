@@ -5,6 +5,8 @@ import { MaterialModule } from '../app-material.module';
 import { AuthGuard } from '../auth/auth-guard.service';
 import { AuthService } from '../auth/auth.service';
 import { ShareComponentsModule } from '../shared-components.module';
+import { UserResolve } from '../user/user/user.resolve';
+import { UserService } from '../user/user/user.service';
 import { ManagerHomeComponent } from './manager-home/manager-home.component';
 import { ManagerRoutingModule } from './manager-routing.module';
 import { ManagerComponent } from './manager.component';
@@ -23,6 +25,6 @@ import { UserTableComponent } from './user-table/user-table.component';
     UserManagerComponent,
     UserTableComponent,
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, UserResolve, UserService],
 })
 export class ManagerModule {}
