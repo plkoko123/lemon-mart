@@ -12,7 +12,6 @@ import { ManagerRoutingModule } from './manager-routing.module';
 import { ManagerComponent } from './manager.component';
 import { ReceiptLookupComponent } from './receipt-lookup/receipt-lookup.component';
 import { UserManagementComponent } from './user-management/user-management.component';
-import { UserManagerComponent } from './user-management/user-manager.component';
 import { UserTableComponent } from './user-table/user-table.component';
 
 @NgModule({
@@ -22,7 +21,6 @@ import { UserTableComponent } from './user-table/user-table.component';
     ManagerComponent,
     UserManagementComponent,
     ReceiptLookupComponent,
-    UserManagerComponent,
     UserTableComponent,
   ],
   providers: [AuthService, AuthGuard, UserResolve, UserService],
