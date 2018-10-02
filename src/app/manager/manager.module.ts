@@ -10,6 +10,7 @@ import { ManagerRoutingModule } from './manager-routing.module';
 import { ManagerComponent } from './manager.component';
 import { ReceiptLookupComponent } from './receipt-lookup/receipt-lookup.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { UserManagerComponent } from './user-management/user-manager.component';
 
 @NgModule({
   imports: [CommonModule, ManagerRoutingModule, MaterialModule, ShareComponentsModule],
@@ -18,6 +19,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
     ManagerComponent,
     UserManagementComponent,
     ReceiptLookupComponent,
+    UserManagerComponent,
   ],
   providers: [AuthService, AuthGuard],
 })
