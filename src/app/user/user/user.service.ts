@@ -9,6 +9,10 @@ import { CacheService } from '../../auth/cache.service';
 import { transformError } from '../../common/common';
 import { IUser, User } from './user';
 
+export interface IUsers {
+  items: IUser[];
+  total: number;
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -37,7 +41,15 @@ export class UserService extends CacheService {
   getUser(id): Observable<IUser> {
     return this.httpClient.get<IUser>(`${environment.baseUrl}/v1/user/${id}`);
   }
-
+  getUsers(pageSize: number, searchText = '', pagesToSkip = 0): Observable<IUsers> {
+    return this.httpClient.get<IUsers>(`${environment.baseUrl}/v1/users`, {
+      params: {
+        search: searchText,
+        offset: pagesToSkip.toString(),
+        limit: pageSize.toString(),
+      },
+    });
+  }
   updateUser(user: IUser): Observable<IUser> {
     this.setItem('draft-user', user); // cache user data in case of errors
     const updateResponse = this.httpClient
