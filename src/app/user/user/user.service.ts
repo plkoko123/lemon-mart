@@ -9,6 +9,13 @@ import { CacheService } from '../../auth/cache.service';
 import { transformError } from '../../common/common';
 import { IUser, User } from './user';
 
+export interface IUserService {
+  currentUser: BehaviorSubject<IUser>;
+  getCurrentUser(): Observable<IUser>;
+  getUser(id): Observable<IUser>;
+  updateUser(user: IUser): Observable<IUser>;
+  getUsers(pageSize: number, searchText: string, pagesToSkip: number): Observable<IUsers>;
+}
 export interface IUsers {
   items: IUser[];
   total: number;
@@ -16,7 +23,7 @@ export interface IUsers {
 @Injectable({
   providedIn: 'root',
 })
-export class UserService extends CacheService {
+export class UserService extends CacheService implements IUserService {
   currentUser = new BehaviorSubject<IUser>(this.getItem('user') || new User());
   private currentAuthStatus: IAuthStatus;
   constructor(private httpClient: HttpClient, private authService: AuthService) {

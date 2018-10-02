@@ -18,4 +18,4 @@ import { ViewUserComponent } from './user/view-user/view-user.component';
   declarations: [ViewUserComponent],
   exports: [ViewUserComponent],
 })
-export class ShareComponentsModule {}
+export class SharedComponentsModule {}

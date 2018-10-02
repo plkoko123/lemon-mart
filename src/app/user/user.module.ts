@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../app-material.module';
 import { AuthGuard } from '../auth/auth-guard.service';
-import { ShareComponentsModule } from '../shared-components.module';
+import { SharedComponentsModule } from '../shared-components.module';
 import { LogoutComponent } from './logout/logout.component';
 import { NavigationMenuComponent } from './navigation-menu/navigation-menu.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -24,7 +24,7 @@ import { UserService } from './user/user.service';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    ShareComponentsModule,
+    SharedComponentsModule,
   ],
   declarations: [ProfileComponent, LogoutComponent, NavigationMenuComponent],
   providers: [UserService, AuthGuard],
