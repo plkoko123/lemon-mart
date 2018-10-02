@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { IUser, User } from '../user/user';
@@ -31,7 +31,7 @@ import { IUser, User } from '../user/user';
     `,
   ],
 })
-export class ViewUserComponent implements OnInit {
+export class ViewUserComponent implements OnChanges {
   @Input()
   user: IUser;
   currentUser = new User();
@@ -42,14 +42,14 @@ export class ViewUserComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {
+  ngOnChanges() {
     if (this.user) {
       this.currentUser = User.BuildUser(this.user);
     }
 
-    if (this.route.snapshot && this.route.snapshot.data) {
-      this.currentUser = User.BuildUser(this.route.snapshot.data['user']);
-      this.currentUser.dateOfBirth = Date.now(); // for data mocking purposes only
-    }
+    // if (this.route.snapshot && this.route.snapshot.data) {
+    //   this.currentUser = User.BuildUser(this.route.snapshot.data['user']);
+    //   this.currentUser.dateOfBirth = Date.now(); // for data mocking purposes only
+    // }
   }
 }
