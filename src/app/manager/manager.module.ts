@@ -11,6 +11,7 @@ import { ManagerComponent } from './manager.component';
 import { ReceiptLookupComponent } from './receipt-lookup/receipt-lookup.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { UserManagerComponent } from './user-management/user-manager.component';
+import { UserTableComponent } from './user-table/user-table.component';
 
 @NgModule({
   imports: [CommonModule, ManagerRoutingModule, MaterialModule, ShareComponentsModule],
@@ -20,6 +21,7 @@ import { UserManagerComponent } from './user-management/user-manager.component';
     UserManagementComponent,
     ReceiptLookupComponent,
     UserManagerComponent,
+    UserTableComponent,
   ],
   providers: [AuthService, AuthGuard],
 })
